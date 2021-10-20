@@ -15,23 +15,30 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
             Console.ReadLine();
             Console.Clear();
 
-            Dog Rocky = new Dog("Rocky", 15.00f, 40.00f);
-            Rocky.hasTail = true;
-            Rocky.Run();
-            Rocky.WagTail();
-            Rocky.Nap();
-            Rocky.MakeSound();
-            Rocky.Fetch();
-            Console.ReadLine();
-            Console.Clear();
-
             Snake Bentley = new Snake("Bentley", 7.14f, 3.23f);
             Bentley.Run();
             Bentley.WagTail();
             Bentley.Nap();
             Bentley.MakeSound();
             Bentley.Shed();
+            Console.ReadLine();
+            Console.Clear();
 
+            Corgi Paul = new Corgi("Paul", 15.00f, 35.00f, true);
+            Paul.Run();
+            Paul.MakeSound();
+            Paul.WagTail();
+            Paul.Nap();
+            Paul.Spin();
+            Console.ReadLine();
+            Console.Clear();
+
+            Shepherd Jerry = new Shepherd("Jerry", 35.00f, 60.00f, false);
+            Jerry.Run();
+            Jerry.MakeSound();
+            Jerry.WagTail();
+            Jerry.Nap();
+            Jerry.Bite();
             Console.ReadLine();
 
         }
@@ -139,7 +146,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
             Console.WriteLine();
         }
     }
-    class Dog : Animal
+    abstract class Dog : Animal
     {
         public bool isBigDog;
         public Dog(string dogName, float dogWeight, float dogHeight)
@@ -176,18 +183,46 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
     }
     class Corgi : Dog
     {
-        public Corgi(string corgiName, float corgiWeight, float corgiHeight) : base(corgiName, corgiWeight, corgiHeight)
+        bool trained;
+        public Corgi(string corgiName, float corgiWeight, float corgiHeight, bool corgitrained) : base(corgiName, corgiWeight, corgiHeight)
         {
             hasTail = false;
-            isBigDog = false;           
+            isBigDog = false;
+            trained = corgitrained;
+        }
+        public void Spin()
+        {
+            if (trained)
+            {
+                Console.WriteLine(name + " är väldresserad och skuttar runt lite i en cirkel...");
+            }
+            else
+            {
+                Console.WriteLine(name + " fattar ingenting och står bara och stirrar på dig...");
+            }
+            
         }
     }
-    class Dachshund : Dog
+    class Shepherd : Dog
     {
-        public Dachshund(string dachsName, float dachsWeight, float dachsHeight) : base(dachsName, dachsWeight, dachsHeight)
+        bool aggressive;
+        public Shepherd(string shepName, float shepWeight, float shepHeight, bool shepAggressive) : base(shepName, shepWeight, shepHeight)
         {
             hasTail = true;
             isBigDog = true;
+            aggressive = shepAggressive;
+        }
+        public void Bite()
+        {
+            if (aggressive)
+            {
+                Console.WriteLine(name + " är en snäll hund och nafsar på din hand lite lätt...");
+            }
+            else
+            {
+                Console.WriteLine(name + " blir lite till sig och biter din hand rätt hårt. Ouch!");
+            }
+            
         }
     }
 }
