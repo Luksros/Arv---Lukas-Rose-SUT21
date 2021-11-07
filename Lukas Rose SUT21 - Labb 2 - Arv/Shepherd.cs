@@ -6,23 +6,34 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
     class Shepherd : Dog
     {
+        //This field is unique to the Shepherd Child-class, which inherits from Dog, which inherits from Animal
         bool aggressive;
         public Shepherd(string shepName, float shepWeight, float shepHeight, bool shepAggressive) : base(shepName, shepWeight, shepHeight)
         {
             hasTail = true;
             isBigDog = true;
             aggressive = shepAggressive;
-            Console.WriteLine("{0} är en stor Schäfer som väger {1} kg och är {2} cm hög.", name, weight, height);
-            menu.AddRange("[1] Springa runt,[2] Vifta på svansen,[3] Ta en tupplur,[4] Gör ett läte,[5] Apport,[6] Nafsa,[7] Återgå till huvudmeny".Split(','));
-            description = (name + " är en stor Schäfer som är " + height + " cm hög och väger " + weight + " kg.");
-            aniType = "Schäfer(Hund)";
+            description = (name + " är en stor Schäfer-hund som är " + height + " cm hög och väger " + weight + " kg.");
         }
-        public override void Unique2()
+        //This field is unique to the Shepherd Child-class
+        public void Bite()
         {
-            Console.Clear();
             Console.WriteLine(name + (aggressive ? " blir lite till sig och biter din hand rätt hårt. Ouch!" 
                                                  : " är en snäll hund och nafsar på din hand lite lätt..."));
-            Console.ReadLine();
+        }
+        public override void RunAllMethods()
+        {
+            System.Threading.Thread.Sleep(1200);
+            Run();
+            System.Threading.Thread.Sleep(1200);
+            WagTail();
+            System.Threading.Thread.Sleep(1200);
+            Nap();
+            MakeSound();
+            System.Threading.Thread.Sleep(1200);
+            Fetch();
+            System.Threading.Thread.Sleep(1200);
+            Bite();
         }
     }
 }

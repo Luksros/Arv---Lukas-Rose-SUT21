@@ -8,28 +8,24 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
     {
         //This field is unique to the Snake Child-class
         public float length;
-        public Snake(string snakeName, float snakeHeight, float snakeWeight = 5.00f, float lengthIn = 3.00f) : base(snakeName, snakeWeight, snakeHeight)
+        public Snake(string snakeName, float snakeHeight, float snakeWeight, float lengthIn) : base(snakeName, snakeWeight, snakeHeight)
         {
             name = snakeName;
             weight = snakeWeight;
             length = lengthIn;
             hasTail = true;
             numOfLegs = 0;
-            menu.AddRange("[1] Springa runt,[2] Vifta på svansen,[3] Ta en tupplur,[4] Gör ett läte,[5] Ömsa skinn,[6] Återgå till huvudmeny".Split(','));
             description = (name + " är en " + length + " meter lång orm som väger " + weight + " kg.");
-            aniType = "Orm";
         }
 
-        //  
         public override void MakeSound()
         {
-            Console.Clear();
             Console.WriteLine(name + " låter. Sss-s-s!");
-            Console.ReadLine();
         }
-        public override void Unique()
+
+        //This method is unique to the Snake Child-class
+        public void Shed()
         {
-            Console.Clear();
             string[] shedStrings = { (name + " ömsar sitt skinn"), " .", " .", " ." };
             for (int i = 0; i < shedStrings.Length; i++)
             {
@@ -37,7 +33,18 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
                 System.Threading.Thread.Sleep(280);
             }
             Console.WriteLine();
-            Console.ReadLine();
+        }
+        public override void RunAllMethods()
+        {
+            System.Threading.Thread.Sleep(1200);
+            Run();
+            System.Threading.Thread.Sleep(1200);
+            WagTail();
+            System.Threading.Thread.Sleep(1200);
+            Nap();
+            MakeSound();
+            System.Threading.Thread.Sleep(1200);
+            Shed();
         }
     }
 }

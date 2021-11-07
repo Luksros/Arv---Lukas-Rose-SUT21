@@ -12,9 +12,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
         public float height;
         public int numOfLegs;
         public bool hasTail;
-        public List <string> menu = new List<string>();
         public string description;
-        public string aniType;
         public Animal(string nameIn, float weightIn, float heightIn)
         {
             name = nameIn;
@@ -25,40 +23,38 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
         //These methods will be inherited by all the animals
         public void Run()
         {
-            Console.Clear();
             Console.WriteLine(name + ((numOfLegs > 1) ? " springer runt lite..." : " kan inte springa, men försöker i alla fall kräla runt lite..."));
-            Console.ReadLine();
         }
         public void WagTail()
         {
-            Console.Clear();
             Console.WriteLine(name + ((hasTail) ? " viftar lite på svansen..." : " har ingen svans att vifta på..."));
-            Console.ReadLine();
         }
         public void Nap()
         {
-            Console.Clear();
-            Console.WriteLine(name + " tar en liten tupplur...");
+            Console.Write(name + " tar en liten tupplur... ");
             string sleep = "Z z z . . .";
             for (int i = 0; i < sleep.Length; i++)
             {
-                System.Threading.Thread.Sleep(280);
+                System.Threading.Thread.Sleep(109);
                 Console.Write(sleep[i]);
             }
             Console.WriteLine();
-            Console.ReadLine();
         }
+
         public virtual void MakeSound()
         {
 
         }
-        public virtual void Unique()
+
+        //RunAllMethods is overridden by all the Child-classes, and runs all the child-classes available methods
+        public virtual void RunAllMethods()
         {
 
         }
-        public virtual void Unique2()
+        public override string ToString()
         {
-            
-        }  
+            return description;
+        }
+        
     }
 }

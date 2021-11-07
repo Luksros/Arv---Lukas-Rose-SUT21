@@ -6,7 +6,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
     class Cat : Animal
     {
-        //This field is unique to the Cat child-class
+        //This field is unique to the Cat Child-class
         public string furColour;
         public Cat(string catName, float catWeight, float catHeight, string colourIn) : base(catName, catWeight, catHeight)
         {
@@ -16,24 +16,30 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
             numOfLegs = 4;
             hasTail = true;
             furColour = colourIn;
-            menu.AddRange("[1] Springa runt,[2] Vifta på svansen,[3] Ta en tupplur,[4] Gör ett läte,[5] Spinn,[6] Återgå till huvudmeny".Split(','));
             description = (name + " är en " + furColour + " katt som är " + height + " cm hög och väger " + weight + " kg.");
-            aniType = "Katt";
         }
 
-        //These methods override the one in the Animal Parent-class to fit this animal
         public override void MakeSound()
         {
-            Console.Clear();
             Console.WriteLine(name + " låter: Mjau!");
-            Console.ReadLine();
         }
 
-        public override void Unique()
+        //This method is unique to the Cat Child-class
+        public void Purr()
         {
-            Console.Clear();
             Console.WriteLine(name + " känner sig säker och spinner lite. Prrr...");
-            Console.ReadLine();
+        }
+        public override void RunAllMethods()
+        {
+            System.Threading.Thread.Sleep(1200);
+            Run();
+            System.Threading.Thread.Sleep(1200);
+            WagTail();
+            System.Threading.Thread.Sleep(1200);
+            Nap();
+            MakeSound();
+            System.Threading.Thread.Sleep(1200);
+            Purr();
         }
     }
 }
