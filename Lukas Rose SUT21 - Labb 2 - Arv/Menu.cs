@@ -4,12 +4,14 @@ using System.Text;
 
 namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
+
+    ///För rättning av labben kan den här klassen helt ignoreras, den är bara till för att göra testningen av programmet mer interaktiv. 
     public class Menu
     {
         public int selector;
-        public List<String> initMenu = new List<string>() {"Vad för djur vill du skapa?",
+        public List<String> mainMenu = new List<string>() {"Vilket djur vill du interagera med?",
                                                            "Välj genom att skriva motsvarande siffra och trycka Enter.",
-                                                           " ","[1] Katt", "[2] Orm", "[3] Corgi (Hund)", "[4] Schäfer (Hund)" };
+                                                           " "," " };
         public List<string> animalMenu = new List<string>() {"Vad vill du att detta djur ska göra?",
                                                            "Välj genom att skriva motsvarande siffra och trycka Enter."," "};
         public void PrintMenu(List<string> menuIn)
@@ -31,41 +33,33 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
                 Console.WriteLine(section);
             }
         }
-        public void PrintMenu(List<string> menuStrings, string tempName)
-        {
-            Console.WriteLine();
-            Console.WriteLine();
-            for (int i = 0; i < menuStrings.Count; i++)
-            {
-                Console.WriteLine("[" + i + "] " + menuStrings[i]);
-            }
-        }
         public void RunMainMenu(Animal[] theseAnimals)
         {
             bool keepRunning;
             do
             {
                 keepRunning = true;
-                Console.Clear();
-                Console.WriteLine("Vilket djur vill du interagera med?");
-                Console.WriteLine();
-                for (int i = 0; i <= theseAnimals.Length; i++)
+                
+                do //As long as the user inputs something invalid, the menu keeps reprinting, until a valid selection is made. 
                 {
-                    if (i < theseAnimals.Length)
+                    Console.Clear();
+                    PrintMenu(mainMenu);
+                    for (int i = 0; i <= theseAnimals.Length; i++)
                     {
-                        Console.WriteLine("[{0}] " + theseAnimals[i].name, i + 1);
+                        //This if-else is here to make the length of the menu modular, to make coding the program easier.
+                        //Basically just means that I don´t have to go back and change the code, if I were to add more animals.
+                        if (i < theseAnimals.Length) 
+                        {
+                            Console.WriteLine("[{0}] {1} ({2})", i + 1, theseAnimals[i].name, theseAnimals[i].aniType);
+                        }
+                        else //When there are no animals left to print out, the end of the menu is printed. 
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("[{0}] Avsluta", i + 1);
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("[{0}] Avsluta", i + 1);
-                    }
+                } while ((!int.TryParse(Console.ReadLine(), out selector)) || ((selector < 1 || selector > theseAnimals.Length + 1)));
 
-                }
-                while ((!int.TryParse(Console.ReadLine(), out selector)) || ((selector < 0 || selector > theseAnimals.Length+1)))
-                {
-
-                }
                 if (selector <= theseAnimals.Length)
                 {
                     RunAnimalMenu(theseAnimals[selector-1]);
@@ -81,13 +75,14 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
         {
             bool runAgain = true;
             while (runAgain)
-            {
-                Console.Clear();
-                PrintMenu(animalMenu, thisAnimal);
-                while (!int.TryParse(Console.ReadLine(), out selector))
+            {             
+                do
                 {
+                    Console.Clear();
+                    PrintMenu(animalMenu, thisAnimal);
 
-                }
+                } while (!int.TryParse(Console.ReadLine(), out selector));
+
                 switch (selector)
                 {
                     case 1:
@@ -105,7 +100,8 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
                     case 5:
                         thisAnimal.Unique();
                         break;
-                    case 6:
+                    case 6: //Since corgi and shepherd have one more method than the other animals (having inherited from both animal and dog),
+                            //the if-clauses on case 6 and 7 check the size (amount of strings) of the menu, and then execute accordingly.  
                         if (thisAnimal.menu.Count > 6)
                         {
                             thisAnimal.Unique2();

@@ -6,6 +6,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
     class Snake : Animal
     {
+        //This field is unique to the Snake Child-class
         public float length;
         public Snake(string snakeName, float snakeHeight, float snakeWeight = 5.00f, float lengthIn = 3.00f) : base(snakeName, snakeWeight, snakeHeight)
         {
@@ -15,9 +16,11 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
             hasTail = true;
             numOfLegs = 0;
             menu.AddRange("[1] Springa runt,[2] Vifta på svansen,[3] Ta en tupplur,[4] Gör ett läte,[5] Ömsa skinn,[6] Återgå till huvudmeny".Split(','));
-            description = (name + " är en " + length + " meter lång orm som väger" + weight + " kg.");
+            description = (name + " är en " + length + " meter lång orm som väger " + weight + " kg.");
+            aniType = "Orm";
         }
 
+        //  
         public override void MakeSound()
         {
             Console.Clear();

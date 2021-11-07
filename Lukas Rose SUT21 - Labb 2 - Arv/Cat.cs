@@ -6,8 +6,8 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
     class Cat : Animal
     {
+        //This field is unique to the Cat child-class
         public string furColour;
-
         public Cat(string catName, float catWeight, float catHeight, string colourIn) : base(catName, catWeight, catHeight)
         {
             name = catName;
@@ -18,13 +18,17 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
             furColour = colourIn;
             menu.AddRange("[1] Springa runt,[2] Vifta på svansen,[3] Ta en tupplur,[4] Gör ett läte,[5] Spinn,[6] Återgå till huvudmeny".Split(','));
             description = (name + " är en " + furColour + " katt som är " + height + " cm hög och väger " + weight + " kg.");
+            aniType = "Katt";
         }
+
+        //These methods override the one in the Animal Parent-class to fit this animal
         public override void MakeSound()
         {
             Console.Clear();
             Console.WriteLine(name + " låter: Mjau!");
             Console.ReadLine();
         }
+
         public override void Unique()
         {
             Console.Clear();

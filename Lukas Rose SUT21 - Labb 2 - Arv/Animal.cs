@@ -6,6 +6,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
 {
     public abstract class Animal
     {
+        //These fields will be inherited by all of the animals
         public string name;
         public float weight;
         public float height;
@@ -13,12 +14,15 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
         public bool hasTail;
         public List <string> menu = new List<string>();
         public string description;
+        public string aniType;
         public Animal(string nameIn, float weightIn, float heightIn)
         {
             name = nameIn;
             weight = weightIn;
             height = heightIn;
         }
+
+        //These methods will be inherited by all the animals
         public void Run()
         {
             Console.Clear();
@@ -54,11 +58,7 @@ namespace Lukas_Rose_SUT21___Labb_2___Arv
         }
         public virtual void Unique2()
         {
-            LogOut();
-        }
-        public virtual bool LogOut()
-        {
-            return false;
-        }   
+            
+        }  
     }
 }
